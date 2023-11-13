@@ -5,18 +5,26 @@ class LRUCache
     end
 
     def count
-      @cache.length
+        @cache.length
     end
 
     def add(el)
-      if @cache.include?(el)
+        if @cache.include?(el)
+            @cache.delete(el)
+            @cache << el
+        elsif count >= size
+            @cache.shift 
+            @cache << el
+        else
+            @cache << el
+        end
     end
 
     def show
-      # shows the items in the cache, with the LRU item first
+        p @cache
+        nil
     end
 
     private
-    # helper methods go here!
 
 end
